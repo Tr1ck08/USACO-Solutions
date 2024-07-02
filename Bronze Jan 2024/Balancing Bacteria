@@ -1,0 +1,29 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+typedef long long ll;
+
+int main() {
+    int a = 0;
+    ll minimum = 0;  
+    vector<ll> num;
+    cin >> a;
+    num.resize(a);
+
+    for (int i = 0; i < a; i++) {
+        cin >> num[i];
+    }
+    for (int i = 0; i < a; i++) {
+        int test = -1*num[i];
+        minimum += abs(test);
+        if(a-i != 1){
+            for(int j = 1; j < a-i; j++) {
+                num[i+j] += test * (j+1);
+            }
+        }
+    }
+
+    cout << minimum;
+    return 0;
+}
