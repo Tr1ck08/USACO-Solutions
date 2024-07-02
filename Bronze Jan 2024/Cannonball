@@ -1,0 +1,61 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int timer = 0;int length = 0;int position = 0;int score = 0;int power = 1;
+    bool flipped = false;
+    bool isDone = false;
+    vector<int> numberline;
+    vector<int> strength;
+    cin >> length >> position;
+    position = position-1;
+    for(int i = 0; i < length; i++){
+        int a = 0;
+        int b = 0;
+        cin >> a >> b;
+        numberline.push_back(a);
+        strength.push_back(b);
+    }
+    while(isDone != true){
+        if(timer >= 1000000){
+            cout << score;
+            return 0;
+        }
+        if(position > length || position < 0){
+            isDone = true;
+            continue;
+        }
+        if(numberline[position] == 1 && power >= strength[position]){
+            score++;
+            numberline[position] = -1;
+            if(flipped == false){
+                position+=power;
+            }
+            else{
+                position-=power;
+            }
+        }
+        else if(numberline[position] == 0){
+            flipped = !flipped;
+            power+=strength[position];
+            if(flipped == false){
+                position+=power;
+            }
+            else{
+                position-=power;
+            }
+        }
+        else{
+            if(flipped == false){
+                position+=power;
+            }
+            else{
+                position-=power;
+            }
+        }
+        timer++;
+    }
+    cout << score;
+    return 0;
+}
