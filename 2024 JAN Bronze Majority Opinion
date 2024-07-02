@@ -1,0 +1,50 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+typedef long long ll;
+
+int main() {
+    int n = 0;
+    int o = 0;
+    vector<int> a;
+    vector<bool> h;
+    cin >> o;
+    for(int j = 0; j < o; j++){
+        a.clear();
+        h.clear();
+        cin >> n;
+        for(int i = 0; i < n; i++){
+            int t = 0;
+            cin >> t;
+            a.push_back(t);
+            h.push_back(false);
+        }
+        for(int b = 0; b < n-1; b++){
+            if(a[b] == a[b+1]){
+                h[a[b]-1] = true;
+            }
+        }
+        for(int c = 0; c < n-2; c++){
+            if(a[c] == a[c+2]){
+                h[a[c]-1] = true;
+            }
+        }
+
+        bool found = false;
+        for(int i = 0; i < n; i++){
+            if(h[i]){
+                if(found){
+                    cout << " ";
+                }
+                cout << i+1;
+                found = true;
+            }
+        }
+        if(!found){
+            cout << "-1";
+        }
+        cout << "\n";
+    }
+    return 0;
+}
